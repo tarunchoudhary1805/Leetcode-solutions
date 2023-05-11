@@ -33,18 +33,17 @@ class Solution
     static int findSubArraySum(int Arr[], int N, int k)
     {
         // code here
-        HashMap<Integer,Integer> map = new HashMap<>();
-        map.put(0,1);
+        HashMap<Integer,Integer> ps = new HashMap();
+        int prefix = 0;
         int count = 0;
-        int ps = 0;
-        for(int i=0;i<N;i++){
-            ps += Arr[i];
-            if(map.containsKey(ps -k )){
-                count+=map.get(ps - k);
+        ps.put(0,1);
+        for(int i=0;i<Arr.length;i++){
+            prefix += Arr[i];
+            if(ps.containsKey(prefix - k)){
+                count+=ps.get(prefix- k);
             }
-            map.put(ps, map.getOrDefault(ps, 0) + 1);
+            ps.put(prefix,ps.getOrDefault(prefix,0)+1);
         }
         return count;
-          
     }
 }
